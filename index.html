@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wina Bwangu Fintech System</title>
+    <link rel="stylesheet" href="style1.css">
+    <!-- Chart.js for Dashboard Visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="toast-container"></div>
+
+    <!-- Top Navigation Bar -->
+    <header class="navbar">
+        <div class="nav-brand">Wina Bwangu <span>Fintech</span></div>
+        <nav class="nav-menu">
+            <button class="nav-btn active" onclick="switchView('entry-view')">Log Transaction</button>
+            <button class="nav-btn" onclick="switchView('dashboard-view')">Analytics Dashboard</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <!-- VIEW 1: Transaction Entry Form (Centered Card Layout) -->
+        <section id="entry-view" class="view-section active">
+            <div class="card form-card">
+                <div class="card-header">
+                    <h2>Log Booth Transaction</h2>
+                </div>
+                <div class="card-body">
+                    <form id="wb-form">
+                        <div class="form-group">
+                            <label for="transaction-id">Transaction ID</label>
+                            <input type="text" id="transaction-id" value="Auto-generated on submit" readonly disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="booth-select">Mobile Booth</label>
+                            <select id="booth-select" required>
+                                <option value="">Select booth...</option>
+                                <option value="Wina1">Wina1</option>
+                                <option value="Wina2">Wina2</option>
+                                <option value="Wina3">Wina3</option>
+                                <option value="Wina4">Wina4</option>
+                                <option value="Wina5">Wina5</option>
+                                <option value="Wina6">Wina6</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="location-input">Location</label>
+                            <input type="text" id="location-input" placeholder="Select a booth first" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="service-select">Service</label>
+                            <select id="service-select" disabled required>
+                                <option value="">Select booth first...</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="revenue-rate">Revenue per Kwacha</label>
+                            <input type="text" id="revenue-rate" placeholder="Auto-filled" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="amount">Transaction Amount (ZMW)</label>
+                            <input type="number" id="amount" step="0.01" min="1" placeholder="Enter amount" required>
+                        </div>
+
+                        <button type="submit" class="btn-primary">Submit Transaction</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- VIEW 2: Full Analytics Dashboard Grid -->
+        <section id="dashboard-view" class="view-section">
+            <!-- Metric Summary Cards -->
+            <div class="metrics-grid">
+                <div class="card metric-tile">
+                    <h3>Total Company Revenue</h3>
+                    <p id="dash-total-revenue">ZMW 0.00</p>
+                </div>
+                <div class="card metric-tile">
+                    <h3>Total Capital Required</h3>
+                    <p id="dash-total-capital">ZMW 0.00</p>
+                </div>
+                <div class="card metric-tile">
+                    <h3>Total Transactions</h3>
+                    <p id="dash-total-count">0</p>
+                </div>
+            </div>
+
+            <div class="dashboard-main-grid">
+                <!-- Left Column: Service Limits & Data Bars -->
+                <div class="card grid-card">
+                    <div class="card-header">
+                        <h2>Service Limits & Remaining Balances</h2>
+                    </div>
+                    <div class="card-body">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Service</th>
+                                    <th>Monthly Limit</th>
+                                    <th>Used</th>
+                                    <th>Remaining Limit Data Bar</th>
+                                </tr>
+                            </thead>
+                            <tbody id="service-limits-body">
+                                <!-- Populated dynamically by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Right Column: Pie Chart -->
+                <div class="card grid-card">
+                    <div class="card-header">
+                        <h2>Financial Overview Split</h2>
+                    </div>
+                    <div class="card-body chart-container">
+                        <canvas id="summaryPieChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script1.js"></script>
+</body>
+</html>
