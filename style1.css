@@ -1,12 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
-    /* Neutral Slate & Dark Navy Palette */
     --bg-color: #f1f5f9;
     --card-bg: #ffffff;
     --header-bg: #f8fafc;
-    --primary-color: #0f172a; /* Slate 900 */
-    --accent-color: #2563eb;  /* Slate Blue */
+    --primary-color: #0f172a;
+    --accent-color: #2563eb;
     --accent-hover: #1d4ed8;
     --text-main: #1e293b;
     --text-muted: #64748b;
@@ -103,6 +102,12 @@ body {
     border-bottom: 1px solid var(--border-color);
 }
 
+.card-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .card-header h2 {
     font-size: 1.1rem;
     font-weight: 600;
@@ -113,7 +118,7 @@ body {
     padding: 24px;
 }
 
-/* Centered Form Card */
+/* Form Styling & Validation Hints */
 .form-card {
     max-width: 480px;
     margin: 20px auto;
@@ -151,6 +156,13 @@ input:disabled, input[readonly], select:disabled {
     background-color: var(--disabled-bg);
     color: var(--text-muted);
     cursor: not-allowed;
+}
+
+.input-hint {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
 }
 
 .btn-primary {
@@ -203,6 +215,16 @@ input:disabled, input[readonly], select:disabled {
     gap: 20px;
 }
 
+#chart-service-filter {
+    width: auto;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: #ffffff;
+}
+
 @media (max-width: 900px) {
     .dashboard-main-grid {
         grid-template-columns: 1fr;
@@ -245,7 +267,7 @@ input:disabled, input[readonly], select:disabled {
 
 .chart-container {
     position: relative;
-    height: 300px;
+    height: 320px;
     display: flex;
     justify-content: center;
     align-items: center;
