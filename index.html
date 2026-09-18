@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wina Bwangu Fintech System</title>
     <link rel="stylesheet" href="style1.css">
-    <!-- Chart.js for Dashboard Visualization -->
+    <!-- Chart.js & Chart.js DataLabels Plugin -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0"></script>
 </head>
 <body>
     <div id="toast-container"></div>
@@ -15,13 +16,13 @@
     <header class="navbar">
         <div class="nav-brand">Wina Bwangu <span>Fintech</span></div>
         <nav class="nav-menu">
-            <button class="nav-btn active" onclick="switchView('entry-view')">Log Transaction</button>
-            <button class="nav-btn" onclick="switchView('dashboard-view')">Analytics Dashboard</button>
+            <button class="nav-btn active" onclick="switchView('entry-view', event)">Log Transaction</button>
+            <button class="nav-btn" onclick="switchView('dashboard-view', event)">Analytics Dashboard</button>
         </nav>
     </header>
 
     <main class="container">
-        <!-- VIEW 1: Transaction Entry Form (Centered Card Layout) -->
+        <!-- VIEW 1: Transaction Entry Form -->
         <section id="entry-view" class="view-section active">
             <div class="card form-card">
                 <div class="card-header">
@@ -66,7 +67,8 @@
 
                         <div class="form-group">
                             <label for="amount">Transaction Amount (ZMW)</label>
-                            <input type="number" id="amount" step="0.01" min="1" placeholder="Enter amount" required>
+                            <input type="number" id="amount" step="0.01" min="1" placeholder="Min ZMW 1.00" required>
+                            <small id="amount-hint" class="input-hint">Minimum: ZMW 1.00 | Select service to view max limit.</small>
                         </div>
 
                         <button type="submit" class="btn-primary">Submit Transaction</button>
@@ -116,10 +118,18 @@
                     </div>
                 </div>
 
-                <!-- Right Column: Pie Chart -->
+                <!-- Right Column: Pie Chart with Service Filter -->
                 <div class="card grid-card">
-                    <div class="card-header">
+                    <div class="card-header chart-header-flex">
                         <h2>Financial Overview Split</h2>
+                        <select id="chart-service-filter" onchange="updateChartFilter()">
+                            <option value="OVERALL">Overall Overview</option>
+                            <option value="Airtel Money">Airtel Money</option>
+                            <option value="MTN Money">MTN Money</option>
+                            <option value="Zamtel Money">Zamtel Money</option>
+                            <option value="Zanaco">Zanaco</option>
+                            <option value="FNB">FNB</option>
+                        </select>
                     </div>
                     <div class="card-body chart-container">
                         <canvas id="summaryPieChart"></canvas>
